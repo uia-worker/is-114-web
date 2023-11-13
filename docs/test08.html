@@ -14,7 +14,7 @@
   <p>Tegne en sirkel med SVG API</p>
 
   <div>
-    <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" >
       <circle cx="50" cy="50" r="40" stroke="none" stroke-width="0" fill="red" />
       <circle cx="75" cy="75" r="40" stroke="black" stroke-width="2" fill="none"/>
     </svg>
@@ -39,6 +39,22 @@
 
   // Legg til sirkelen i SVG-elementet
   svg.appendChild(circle);
+
+
+  // En måte å håndtere navnkonflikter på 
+  var minModule = (function () {
+
+    function circle() {
+       console.log( "Tegn sirkel fra minModule.");
+    }
+
+    return {
+            circle: circle
+        };
+
+  })();
+  minModule.circle();
+  
 </script>
   
 </body>
