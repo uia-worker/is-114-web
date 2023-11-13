@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <title>IS-114 Web test05</title>
+  <style type="">
+    /* At the top level of your code */
+@media screen and (min-width: 900px) {
+  article {
+    padding: 1rem 3rem;
+  }
+}
+
+/* Nested within another conditional at-rule */
+@supports (display: flex) {
+  @media screen and (min-width: 900px) {
+    article {
+      display: flex;
+    }
+  }
+}
+  </style>
+
+</head>
+
+<body>
+  <h1>Webprogrammering</h1>
+  <p>Paragraph 1</p>
+  <p>Paragraph 2</p>
+  <p>Paragraph 3</p>
+  <h2>Responsiv webdesign</h2>
+  <h2><i>Viewport</i></h2>
+  <i><h2>Viewport</h2></i>
+  <span><h3>Span 1</h3> <h3>Span 2</h3></span>
+ 
+  <div>Div 1</div>
+  <div>Div 2
+    <div class="mydiv">
+    </div>
+  </div>
+  <div>Div 3<div>Div 3.1<div>Div 3.1.1<div>Div 3.1.1.1<div>Div 3.1.1.1.1</div></div></div></div></div>
+  
+</body>
+
+</html>

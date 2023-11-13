@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link href='https://fonts.googleapis.com/css?family=IBM Plex Serif' rel='stylesheet'> -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@700&display=swap" rel="stylesheet"> -->
+    <!-- <link rel="stylesheet" href="css/style.css" /> -->
+    <!-- <script src="js/script.js"></script> -->
+    <title>IS-114 Web test10: svg viewBox</title>
+    <style type="text/css"></style>
+        
+    <!-- <script type="text/javascript"></script> -->
+</head>
+<body>
+
+<!--
+ * En <svg>-element som er 500 piksler i bredt og 200 piksler høyt.
+ * viewBox attributt til <svg>-elementet har fire verdier som representerer koordinater.
+ * Se eksempler for bruken av viewBox her https://jenkov.com/tutorials/svg/svg-viewport-view-box.html#pageToc
+-->
+
+<svg width="500" height="200" viewBox="0 0 50 20"  style="border: 1px solid #cccccc;">
+
+    <rect x="20" y="10" width="10" height="5" stroke="black" stroke-width="1" fill="none"/>
+
+</svg>
+<br />
+<!-- samme som preserveAspectRatio="xMidYMid meet" --> 
+<svg width="500" height="200" viewBox="0 0 70 20"  style="border: 1px solid #cccccc;">
+
+    <rect x="20" y="10" width="10" height="5" stroke="black" stroke-width="1" fill="none"/>
+
+</svg>
+<br />
+<svg width="500" height="75" viewBox="0 0 250 75"
+     preserveAspectRatio="xMinYMin meet"
+     style="border: 1px solid #cccccc;">
+
+    <rect x="1" y="1" width="50" height="50" stroke="black" fill="none"/>
+
+</svg>
+  <!-- 
+    Det anbefales å plassere script nederst i <body>-elementet.
+    Nettleseren laster inn HTML og CSS-blokker i rekkefølge, og hvis JavaScript-koden blir plassert øverst i <body>-elementet, vil det forsinke nettsiden fra å bli lastet inn fordi nettleseren må vente på at disse skriptene skal lastes først. (fra GPT UiO med prompten "hvor i body elementet skal javascript kode inkluderes fo rå unngå feil").
+    Unntak: avhengigheter mellom javascript-biblioteker (må plasseres i head), DOM-manipulasjon (f. eks. <canvas>-elementet), hensyn til ytelse (noe som må lastes inn før noe annet), avvik fra beste praksis (hensyn til eksisterende kode)
+  -->
+  <!-- <script type="text/javascript"></script> -->
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link href='https://fonts.googleapis.com/css?family=IBM Plex Serif' rel='stylesheet'> -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@700&display=swap" rel="stylesheet"> -->
+    <!-- <link rel="stylesheet" href="css/style.css" /> -->
+    <!-- <script src="js/script.js"></script> -->
+    <title>IS-114 Web test09: yin-yang pyret-html(svg)</title>
+    <style type="text/css"></style>
+        
+    <!-- <script type="text/javascript"></script> -->
+</head>
+<body>
+<!-- setter automatisk viewport (300, 150), hvis ikke spesifisert eksplisitt -->
+
+<!-- circle-50-outline-black = circle(50, "outline", "black") -->
+<svg xmlns="http://www.w3.org/2000/svg" style="border: 1px solid #cccccc;">
+  <circle cx="50" cy="50" r="50" stroke="black" fill="white" />
+</svg>
+
+<!--circle-50-solid-white = circle(50, "solid", "white") -->
+<svg xmlns="http://www.w3.org/2000/svg" style="border: 1px solid #cccccc;">
+  <circle cx="50" cy="50" r="50" fill="gray" />
+</svg>
+
+<!-- circle-50-solid-black = circle(50, "solid", "black") -->
+<svg xmlns="http://www.w3.org/2000/svg" style="border: 1px solid #cccccc;">
+  <circle cx="50" cy="50" r="50" fill="black" />
+</svg>
+
+<!-- half-circle-50-black = crop(50, 0, 100, 100, circle-50-solid-black) -->
+<!-- "arc" A rx ry x-axis-rotation large-arc-flag sweep-flag x y -->
+<!-- https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths --> 
+<svg  xmlns="http://www.w3.org/2000/svg" style="border: 1px solid #cccccc;">
+  <path d="M 50 0
+           A 50 50, 0, 0, 0, 50 100
+           L 50 100 Z" fill="black"/>
+</svg>
+
+<!-- circle-25-solid-white = circle(25, "solid", "white") --> 
+<!--circle-50-solid-white = circle(50, "solid", "white") -->
+<svg xmlns="http://www.w3.org/2000/svg" style="border: 1px solid #cccccc;">
+  <circle cx="25" cy="25" r="25" fill="gray" />
+</svg>
+  
+
+<!-- circle-8-solid-black = circle(8, "solid", "black") --> 
+<svg xmlns="http://www.w3.org/2000/svg" style="border: 1px solid #cccccc;">
+  <circle cx="8" cy="8" r="8" fill="black" />
+</svg>
+
+<!-- yin-and-yang --> 
+<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg" style="border: 1px solid #cccccc;">
+  <circle cx="50" cy="50" r="50" stroke="black" fill="white" />
+  <path d="M 50 0
+           A 50 50, 0, 0, 1, 50 100
+           L 50 100 Z" fill="black"/>
+  <circle cx="50" cy="25" r="25" fill="white" />
+  <circle cx="50" cy="25" r="8" fill="black" />
+  <circle cx="50" cy="75" r="25" fill="black" />
+  <circle cx="50" cy="75" r="8" fill="white" />
+</svg>
+
+
+
+
+  <!-- 
+    Det anbefales å plassere script nederst i <body>-elementet.
+    Nettleseren laster inn HTML og CSS-blokker i rekkefølge, og hvis JavaScript-koden blir plassert øverst i <body>-elementet, vil det forsinke nettsiden fra å bli lastet inn fordi nettleseren må vente på at disse skriptene skal lastes først. (fra GPT UiO med prompten "hvor i body elementet skal javascript kode inkluderes fo rå unngå feil").
+    Unntak: avhengigheter mellom javascript-biblioteker (må plasseres i head), DOM-manipulasjon (f. eks. <canvas>-elementet), hensyn til ytelse (noe som må lastes inn før noe annet), avvik fra beste praksis (hensyn til eksisterende kode)
+  -->
+  <!-- <script type="text/javascript"></script> -->
+</body>
+</html>
