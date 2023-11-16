@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link href='https://fonts.googleapis.com/css?family=IBM Plex Serif' rel='stylesheet'> -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@700&display=swap" rel="stylesheet"> -->
+    <!-- <link rel="stylesheet" href="css/style.css" /> -->
+    <!-- <script src="js/script.js"></script> -->
+    <title>IS-114 Web test11: overlay eksempel</title>
+    
+    <style type="text/css">
+
+      /* https://www.w3.org/Style/Examples/007/units.en.html */
+      #main {
+        position: relative;
+        height: 100vh;
+        width: 100vw;
+      }
+
+      #yinyang {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 150px;
+        height: 150px;
+        background-color: red;
+      }
+
+      #yinyang:hover {
+        background-color: green;
+      }
+
+    </style>
+        
+    <!-- <script type="text/javascript"></script> -->
+</head>
+<body>
+
+  <div id="main">
+    <a href="">
+    <div id="yinyang">
+      <!-- yin-and-yang --> 
+      <!--
+      <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg" style="margin: 25px;">
+        <circle cx="50" cy="50" r="50" stroke="black" fill="white" />
+        <path d="M 50 0
+           A 50 50, 0, 0, 1, 50 100
+           L 50 100 Z" fill="black"/>
+        <circle cx="50" cy="25" r="25" fill="white" />
+        <circle cx="50" cy="25" r="8" fill="black" />
+        <circle cx="50" cy="75" r="25" fill="black" />
+        <circle cx="50" cy="75" r="8" fill="white" />
+      </svg>
+    -->
+    <svg id="yiya" xmlns="http://www.w3.org/2000/svg"></svg>
+    </div>
+    </a>
+  </div>
+
+
+  <script>
+    
+
+
+    function circle(radius, mode, color) {
+      const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      circle.setAttribute("cx", radius);
+      circle.setAttribute("cy", radius);
+      circle.setAttribute("r", radius);
+      circle.setAttribute("fill", color);
+      return circle;
+
+    }
+
+    function overlay_xy(ctx, dx, dy, circle) {
+      circle.setAttribute("cx", dx);
+      circle.setAttribute("cy", dy);
+      ctx.appendChild(circle);
+      return ctx;
+    }
+
+    const svg = document.getElementById("yiya");
+    svg.setAttribute("width", "100");
+    svg.setAttribute("height", "100");
+
+    phase_1 = overlay_xy(svg, 50, 50, circle(50, "solid", "black"));
+    phase_2 = overlay_xy(phase_1, 50, 25, circle(25, "solid", "white"));
+
+  </script>
+
+
+</body>
+</html>
