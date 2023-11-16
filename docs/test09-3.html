@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link href='https://fonts.googleapis.com/css?family=IBM Plex Serif' rel='stylesheet'> -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@700&display=swap" rel="stylesheet"> -->
+    <!-- <link rel="stylesheet" href="css/style.css" /> -->
+    <!-- <script src="js/script.js"></script> -->
+    <title>IS-114 Web test09-3: yin-yang pyret-html(svg)</title>
+
+    <style type="text/css">
+
+      #main {
+        position: relative;
+        height: 100vh;
+        width: 100vw;
+      }
+
+      #yinyang {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 150px;
+        height: 150px;
+        background-color: red;
+      }
+
+      #yinyang:hover {
+        background-color: green;
+      }
+
+    </style>
+        
+    <!-- <script type="text/javascript"></script> -->
+</head>
+<body>
+
+  <div id="main">
+    <a href="">
+      <!--
+    <div id="yinyang">
+      <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg" style="margin: 25px;">
+        <circle cx="50" cy="50" r="50" stroke="black" fill="white" />
+        <path d="M 50 0
+           A 50 50, 0, 0, 1, 50 100
+           L 50 100 Z" fill="black"/>
+        <circle cx="50" cy="25" r="25" fill="white" />
+        <circle cx="50" cy="25" r="8" fill="black" />
+        <circle cx="50" cy="75" r="25" fill="black" />
+        <circle cx="50" cy="75" r="8" fill="white" />
+      </svg>
+    </div>
+    -->
+    <div id="yinyang">
+      <svg id="yiya" xmlns="http://www.w3.org/2000/svg" style="margin: 25px;" >
+      </svg>
+    </div>
+    </a>
+    
+  </div>
+
+  <script type="text/javascript">
+
+    // En måte å håndtere navnkonflikter på 
+    var svgIS114 = (function () {
+
+      function circle() {
+
+      }
+
+      function halfcircle() {
+
+      }
+
+      return {
+        circle: circle
+        halfcircle: halfcircle
+      };
+
+    })();
+
+  const svg = document.getElementById("yinyang");
+  svg.setAttribute("width", "100");
+  svg.setAttribute("height", "100");
+  el = 100;
+  //svg.appendChild(svgModule.triangle(el/2, 0, el, 0, "lime"));
+
+  /*
+
+  svg.appendChild(svgModule.triangle(el/2, 0, el/2, 0, "lightblue"));
+  svg.appendChild(svgModule.triangle(el/2/2, el/2, el/2, 0, "red")); // 25 = el/2/2
+  svg.appendChild(svgModule.triangle(el/2/2 + el/2, el/2, el/2, 0, "orange")); // 75 = el/2/2 + el/2
+
+  svg.appendChild(svgModule.triangle(el/2, 0, el/4, 0, "green"));
+  svg.appendChild(svgModule.triangle(el/2/2 + el/4/2, el/4, el/4, 0, "gray")); 
+  svg.appendChild(svgModule.triangle(el/2/2 + el/4/2 + el/4, el/4, el/4, 0, "yellow"));
+
+  svg.appendChild(svgModule.triangle(el/2, 0, el/8, 0, "white"));
+  svg.appendChild(svgModule.triangle(el/2/2 + el/4/2 + el/8/2, el/8, el/8, 0, "white"));
+  svg.appendChild(svgModule.triangle(el/2/2 + el/4/2 + el/8/2 + el/8, el/8, el/8, 0, "white"));
+
+  svg.appendChild(svgModule.triangle(el/2, 0, el/16, 0, "orange"));
+  svg.appendChild(svgModule.triangle(el*(15/32), el/16, el/16, 0, "orange"));
+  svg.appendChild(svgModule.triangle(el*(17/32), el/16, el/16, 0, "orange"));
+
+  svg.appendChild(svgModule.triangle(el/2, 0, el/32, 0, "red"));
+  svg.appendChild(svgModule.triangle(el*(31/64), el/32, el/32, 0, "red"));
+  svg.appendChild(svgModule.triangle(el*(33/64), el/32, el/32, 0, "red"));
+
+  */
+
+  function drawSierpinski(ctx, edl) {
+    if (edl < 5) {
+      return;
+    } 
+
+    ctx.appendChild(svgModule.triangle(edl/2, 0, edl/2, 0, "lightblue"));
+    ctx.appendChild(svgModule.triangle(edl/2/2, edl/2, edl/2, 0, "red")); 
+    ctx.appendChild(svgModule.triangle(edl/2/2 + edl/2, edl/2, el/2, 0, "orange")); 
+
+    drawSierpinski(ctx, edl/2);
+    drawSierpinksi(ctx, edl/2);
+    drawSierpinski(ctx, edl/2);
+  }
+
+ // drawSierpinski(svg, el);
+
+
+/*
+
+<svg viewBox="0 0 220 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Simple rectangle -->
+  <rect width="100" height="100" />
+
+  <!-- Rounded corner rectangle -->
+  <rect x="120" width="100" height="100" rx="15" />
+</svg>
+*/
+  function rectangle(rw, rh, color) {
+    const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+    // Angi attributter for sirkelen
+    rect.setAttribute("width", rw)
+    //triangle.setAttribute("stroke", "purple");
+    rect.setAttribute("height", rh);
+    rect.setAttribute("fill", color);
+    return rect;
+  }
+
+  function recRect(ctx, w, h, limit, color) {
+    
+    if (w < limit) {
+      console.log(w);
+      return;
+    } else {
+    ctx.appendChild(rectangle(w, h, color));
+    const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+    
+    recRect(ctx, w-10, h-10, limit, randomColor);
+   }
+  }
+  recRect(svg, 100, 100, 30, "rgb(155, 102, 102)");
+
+  </script>
+
+</body>
+</html>
