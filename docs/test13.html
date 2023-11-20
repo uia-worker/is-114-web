@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link href='https://fonts.googleapis.com/css?family=IBM Plex Serif' rel='stylesheet'> -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@700&display=swap" rel="stylesheet"> -->
+    <!-- <link rel="stylesheet" href="css/style.css" /> -->
+    <!-- <script src="js/script.js"></script> -->
+    <title>IS-114 Web test09-3: yin-yang pyret-html(svg)</title>
+
+    <style type="text/css">
+
+      #main {
+        position: relative;
+        height: 100vh;
+        width: 100vw;
+      }
+
+      #menu {
+        position: absolute;
+        width:300px;
+        height: 400px;
+      }
+
+      #yinyang {
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        width: 150px;
+        height: 150px;
+        background-color: red;
+      }
+
+      #yinyang:hover {
+        background-color: green;
+      }
+
+      #striangle {
+        position: absolute;
+        top: 10%;
+        left: 50%;
+        width: 150px;
+        height: 150px;
+        background-color: darkviolet;
+      }
+
+      #striangle:hover {
+        background-color: lightseagreen;
+      }
+
+      #rectangle {
+        position: absolute;
+        top: 50%;
+        left: 5%;
+        width: 150px;
+        height: 150px;
+        background-color: #BD7700;
+      }
+
+      #rectangle:hover {
+        background-color: blue;
+      }
+
+    </style>
+        
+    <!-- <script type="text/javascript"></script> -->
+</head>
+<body>
+
+  <div id="main">
+    <div id="menu">
+    <a href="">
+    <div id="yinyang">
+      <!-- yin-and-yang --> 
+      <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg" style="margin: 25px;">
+        <circle cx="50" cy="50" r="50" stroke="black" fill="white" />
+        <path d="M 50 0
+           A 50 50, 0, 0, 1, 50 100
+           L 50 100 Z" fill="black"/>
+        <circle cx="50" cy="25" r="25" fill="white" />
+        <circle cx="50" cy="25" r="8" fill="black" />
+        <circle cx="50" cy="75" r="25" fill="black" />
+        <circle cx="50" cy="75" r="8" fill="white" />
+      </svg>
+    </div>
+    </a>
+    <!--
+    <div>
+      <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200">
+        <polygon points="100,10 190,190 10,190" stroke="purple" fill="lime" stroke-width="0" />
+        <polygon points="100,10 145,100 55,100" stroke="purple" fill="red" stroke-width="0" />
+        <polygon points="55,100 100,190 10,190" stroke="purple" fill="orange" stroke-width="0" />
+        <polygon points="145,100 190,190 100,190" stroke="purple" fill="black" stroke-width="0" />
+      </svg>
+    </div>
+    -->
+    <div id="striangle">
+      <svg id="sierpinski" xmlns="http://www.w3.org/2000/svg" style="margin: 25px;" >
+      </svg>
+    </div>
+    <div id="rectangle">
+      <svg id="recrect" xmlns="http://www.w3.org/2000/svg" style="margin: 25px;" >
+      </svg>
+    </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    console.log(Math.sqrt(Math.pow(180, 2) - Math.pow(90, 2)))
+
+    // En måte å håndtere navnkonflikter på 
+  var svgModule = (function () {
+
+    function triangle(pts, mode, color) {
+      // Opprett et <polygon> element
+      const triangle = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+
+      // Angi attributter for sirkelen
+      triangle.setAttribute("points", pts)
+      //triangle.setAttribute("stroke", "purple");
+      triangle.setAttribute("stroke-width", mode.toString());
+      triangle.setAttribute("fill", color);
+
+      return triangle
+    }
+
+    return {
+      triangle: triangle
+    };
+
+  })();
+
+  
+  //svg.appendChild(svgModule.triangle(el/2, 0, el, 0, "lime"));
+
+  
+
+  function drawSierpinski(ctx, pts, level) {
+    if (level >= 5) {
+      return;
+    } 
+
+    points = pts.p1.x + "," + pts.p1.y + " " + pts.p2.x + "," + pts.p2.y + " " + pts.p3.x + "," + pts.p3.y;
+    ctx.appendChild(svgModule.triangle(points, 0, "orange")); 
+
+    firstPoint = pts.p1.x + "," + pts.p1.y
+    secondPoint = ((pts.p1.x + pts.p2.x) / 2).toString() + "," + ((pts.p1.y + pts.p2.y) / 2).toString();
+    thirdPoint = ((pts.p1.x + pts.p3.x) / 2).toString() + "," + ((pts.p1.y + pts.p3.y) / 2).toString();
+    calcPoints = firstPoint + " " + secondPoint + " " + thirdPoint
+    console.log(calcPoints);
+    drawSierpinski(ctx, calcPoints, level + 1);
+    //drawSierpinksi(ctx, edl/2);
+    //drawSierpinski(ctx, edl/2);
+
+    //drawSierpinski(ctx, p1, ((p1[0] + p2[0]) / 2, (p1[1] + p2[1]) / 2), ((p1[0] + p3[0]) / 2, (p1[1] + p3[1]) / 2), level + 1)
+    //drawSierpinski(ctx, p2, ((p2[0] + p3[0]) / 2, (p2[1] + p3[1]) / 2), ((p2[0] + p1[0]) / 2, (p2[1] + p1[1]) / 2), level + 1)
+    //drawSierpinski(ctx, p3, ((p3[0] + p2[0]) / 2, (p3[1] + p2[1]) / 2), ((p3[0] + p1[0]) / 2, (p3[1] + p1[1]) / 2), level + 1)
+
+  }
+
+
+  const svg = document.getElementById("sierpinski");
+  svg.setAttribute("width", "100");
+  svg.setAttribute("height", "100");
+  edgeLen = 100;
+  heightTriangle = Math.sqrt(Math.pow(edgeLen, 2), Math.pow(edgeLen/2, 2));
+  startPoints = {"p1": {"x": 50, "y": 0}, "p2": {"x": 0, "y": heightTriangle}, "p3": {"x": edgeLen, "y": heightTriangle}};
+  drawSierpinski(svg, startPoints, 0);
+
+
+/*
+
+<svg viewBox="0 0 220 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Simple rectangle -->
+  <rect width="100" height="100" />
+
+  <!-- Rounded corner rectangle -->
+  <rect x="120" width="100" height="100" rx="15" />
+</svg>
+*/
+  function rectangle(rw, rh, color) {
+    const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+    // Angi attributter for sirkelen
+    rect.setAttribute("width", rw)
+    //triangle.setAttribute("stroke", "purple");
+    rect.setAttribute("height", rh);
+    rect.setAttribute("fill", color);
+    return rect;
+  }
+
+  function recRect(ctx, w, h, limit, color) {
+    
+    if (w < limit) {
+      console.log(w);
+      return;
+    } else {
+    ctx.appendChild(rectangle(w, h, color));
+    const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+    
+    recRect(ctx, w-10, h-10, limit, randomColor);
+   }
+  }
+
+  const svg_rect = document.getElementById("recrect");
+  svg_rect.setAttribute("width", "100");
+  svg_rect.setAttribute("height", "100");
+  recRect(svg_rect, 100, 100, 30, "rgb(155, 102, 102)");
+
+  </script>
+
+</body>
+</html>
